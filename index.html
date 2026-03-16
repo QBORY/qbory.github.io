@@ -19,17 +19,13 @@ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 
 body{
-
 background:#0b0b0c;
 color:white;
-
 display:flex;
 justify-content:center;
 align-items:center;
-
 min-height:100vh;
 padding:20px;
-
 }
 
 .container{
@@ -38,81 +34,54 @@ max-width:420px;
 }
 
 .card{
-
 background:rgba(255,255,255,0.03);
-
 backdrop-filter: blur(20px);
-
 border-radius:24px;
-
 padding:22px;
-
 margin-bottom:18px;
-
 border:1px solid rgba(255,255,255,0.06);
-
 }
 
 .profile{
-
 display:flex;
 align-items:center;
 gap:16px;
-
 }
 
 .avatar{
-
 width:70px;
 height:70px;
-
 border-radius:50%;
-
 background:#222;
 background-size:cover;
 background-position:center;
-
 }
 
 .name{
-
 font-size:20px;
 font-weight:600;
-
 }
 
 .subtitle{
-
 margin-top:6px;
-
 color:#9a9a9f;
-
 line-height:1.4;
-
 font-size:14px;
-
 }
 
 .section{
-
 margin-top:20px;
 margin-bottom:8px;
-
 font-size:14px;
 color:#8e8e93;
-
 }
 
 .row{
-
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 padding:14px 0;
-
 border-bottom:1px solid rgba(255,255,255,0.06);
-
 }
 
 .row:last-child{
@@ -120,82 +89,93 @@ border-bottom:none;
 }
 
 .left{
-
 display:flex;
 align-items:center;
 gap:10px;
-
 color:#9a9a9f;
-
 }
 
 .left i{
-
 font-size:16px;
-
 color:#4ea1ff;
-
 }
 
 a{
-
 color:#4ea1ff;
 text-decoration:none;
-
 }
 
 .interests{
-
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:10px;
-
 margin-top:10px;
-
 }
 
 .tag{
-
 background:rgba(255,255,255,0.05);
-
 padding:10px;
-
 border-radius:12px;
-
 font-size:14px;
-
 text-align:center;
-
 }
 
 .button{
-
 margin-top:12px;
-
 text-align:center;
-
 padding:14px;
-
 border-radius:16px;
-
 background:#111;
-
 border:1px solid rgba(255,255,255,0.08);
-
 font-size:15px;
-
 color:#4ea1ff;
-
-transition:0.2s;
-
 cursor:pointer;
-
 }
 
-.button:hover{
+/* MODAL */
 
-background:#171717;
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+display:flex;
+align-items:center;
+justify-content:center;
+visibility:hidden;
+opacity:0;
+transition:0.25s;
+}
 
+.modal.active{
+visibility:visible;
+opacity:1;
+}
+
+.modal-content{
+background:#1c1c1e;
+padding:30px;
+border-radius:20px;
+text-align:center;
+max-width:300px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.modal-content p{
+margin:8px 0;
+font-size:16px;
+}
+
+.close{
+margin-top:20px;
+padding:10px 16px;
+border-radius:10px;
+border:none;
+background:#2c2c2e;
+color:white;
+cursor:pointer;
 }
 
 </style>
@@ -206,20 +186,16 @@ background:#171717;
 
 <div class="container">
 
-
 <div class="card profile">
 
 <div class="avatar" style="background-image:url('avatar.jpg')"></div>
 
 <div>
-
 <div class="name">Danil Grishin</div>
-
 <div class="subtitle">
 Лишившись гнезда,<br>
 Птица весь мир обретет
 </div>
-
 </div>
 
 </div>
@@ -230,38 +206,27 @@ background:#171717;
 <div class="card">
 
 <div class="row">
-
 <div class="left">
 <i class="fa-brands fa-telegram"></i>
 <span>Телеграм</span>
 </div>
-
 <a href="https://t.me/qbory">@qbory</a>
-
 </div>
 
-
 <div class="row">
-
 <div class="left">
 <i class="fa-solid fa-envelope"></i>
 <span>Эл. почта</span>
 </div>
-
 <a href="mailto:qbory@yandex.ru">qbory@yandex.ru</a>
-
 </div>
 
-
 <div class="row">
-
 <div class="left">
 <i class="fa-brands fa-instagram"></i>
 <span>Instagram</span>
 </div>
-
 <a href="https://instagram.com/qbory">@qbory</a>
-
 </div>
 
 </div>
@@ -272,25 +237,52 @@ background:#171717;
 <div class="card">
 
 <div class="interests">
-
 <div class="tag">Спорт</div>
 <div class="tag">Путешествия</div>
 <div class="tag">Живое общение</div>
 <div class="tag">Фотография</div>
 <div class="tag">Чтение</div>
 <div class="tag">Просмотр сериалов</div>
-
 </div>
 
 </div>
 
 
-<div class="button">
+<div class="button" onclick="openModal()">
 QAstudio
 </div>
 
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<p>Герман топ</p>
+<p>Люблю покемонов</p>
+<p>Палермо рулит</p>
+
+<button class="close" onclick="closeModal()">Закрыть</button>
 
 </div>
+
+</div>
+
+
+<script>
+
+function openModal(){
+document.getElementById("modal").classList.add("active");
+}
+
+function closeModal(){
+document.getElementById("modal").classList.remove("active");
+}
+
+</script>
 
 </body>
 </html>
